@@ -14,10 +14,11 @@ namespace RTUI.Controllers
         }
 
         // Action to trigger AI-based debugging from the dashboard
+        [HttpPost]
         public async Task<IActionResult> RunAIDebugger()
         {
             string result = await _aiDebuggingService.AnalyzeAndFixBugsAsync();
-            ViewBag.DebugResult = result;  // Show the result in the UI
+            ViewBag.DebugResult = result;  // Display the result in the UI
             return View("Dashboard");  // Redirect to the main dashboard
         }
     }

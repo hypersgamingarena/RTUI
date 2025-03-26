@@ -1,14 +1,16 @@
 ﻿@{
-    ViewData["Title"] = "AI Debugging Status";
+    ViewData["Title"] = "Dashboard";
 }
 
-<h2>AI Debugging Status</h2>
+<h2>AI Debugging Dashboard</h2>
 
 @if (ViewBag.DebugResult != null)
 {
-    <p>@ViewBag.DebugResult</p>
+    <div class="alert alert-info">
+        <strong>Debugging Result:</strong> @ViewBag.DebugResult
+    </div>
 }
 
-<form asp-controller="Dashboard" asp-action="RunAIDebugger" method="post">
-    <button type="submit">Run AI Debugger</button>
+<form method="post" asp-action="RunAIDebugger">
+    <button type="submit" class="btn btn-primary">Run AI Debugger</button>
 </form>

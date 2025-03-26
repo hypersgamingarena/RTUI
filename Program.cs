@@ -23,49 +23,49 @@ try
 
     // Add logging
     builder.Services.AddLogging(logging => logging.AddConsole().AddDebug());
-
-    var app = builder.Build();
-
-    // Apply migrations and seed the database if it's empty
-    using (var scope = app.Services.CreateScope())
-    {
-        var services = scope.ServiceProvider;
-        var context = services.GetRequiredService<ApplicationDbContext>();
-
-        // Apply migrations to ensure the database is up-to-date
-        context.Database.Migrate();
-
-        // Seed the database
-        SeedData.Initialize(services);
-    }
-
-    // Configure the HTTP request pipeline.
-    if (app.Environment.IsDevelopment())
-    {
-        app.UseDeveloperExceptionPage();
-    }
-    else
-    {
-        app.UseExceptionHandler("/Home/Error");
-        app.UseHsts();
-    }
-
-    app.UseHttpsRedirection();
-    app.UseStaticFiles();
-    app.UseRouting();
-    app.UseAuthorization();
-
-    // Default route configuration
-    app.MapControllerRoute(
-        name: "default",
-        pattern: "{controller=Dashboard}/{action=Index}/{id?}");
-
-    app.Run();
 }
 catch (Exception ex)
 {
-    // Log the exception and rethrow
+    // Log the exception during startup
     var logger = LoggerFactory.Create(builder => builder.AddConsole()).CreateLogger<Program>();
-    logger.LogError(ex, "An error occurred during application startup.");
+    logger.LogError(ex, "An error occurred during service configuration.");
     throw;
 }
+
+var app = builder.Build();
+
+// Apply migrations and seed the database if it's empty
+using (var scope = app.Services.CreateScope())
+{
+    var services = scope.ServiceProvider;
+    var context = services.GetRequiredService<ApplicationDbContext>();
+
+    // Apply migrations to ensure the database is up-to-date
+    context.Database.Migrate();
+
+    // Seed the database
+    SeedData.Initialize(services);
+}
+
+// Configure the HTTP request pipeline.
+if (app.Environment.IsDevelopment())
+{
+    app.UseDeveloperExceptionPage();
+}
+else
+{
+    app.UseExceptionHandler("/Home/Error");
+    app.UseHsts();
+}
+
+app.UseHttpsRedirection();
+app.UseStaticFiles();
+app.UseRouting();
+app.UseAuthorization();
+
+// Default route configuration
+app.MapControllerRoute(
+    name: "default",
+    pattern: "{controller=Dashboard}/{action=Index}/{id?}");
+
+app.Run();
