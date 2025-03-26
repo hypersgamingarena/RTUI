@@ -1,0 +1,41 @@
+﻿@{
+    ViewData["Title"] = "Dashboard";
+}
+
+
+
+<div class="container">
+    <h1 class="text-center mt-4">Dashboard - RoomTech Ultra Instinct (RTUI)</h1>
+
+    <div class="row mt-4">
+        <div class="col-md-4">
+            <div class="card shadow-lg">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Current Projects</h5>
+                    <p class="card-text">View and manage ongoing projects.</p>
+                    <a asp-action="CurrentProjects" class="btn btn-primary">Go to Projects</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card shadow-lg">
+                <div class="card-body text-center">
+                    <h5 class="card-title">New Project</h5>
+                    <p class="card-text">Create a new project with custom options.</p>
+                    <a asp-action="NewProject" class="btn btn-success">Create New</a>
+                </div>
+            </div>
+        </div>
+
+        <div class="col-md-4">
+            <div class="card shadow-lg">
+                <div class="card-body text-center">
+                    <h5 class="card-title">Debugging & Analytics</h5>
+                    <p class="card-text">Run diagnostics and fix issues automatically.</p>
+                    <a href="#" class="btn btn-danger">Start Debugging</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

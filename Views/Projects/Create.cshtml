@@ -1,0 +1,67 @@
+﻿@model RTUI.Models.Project
+
+@{
+    ViewData["Title"] = "Create New Project";
+}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Create New Project</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+    <div class="container mt-5">
+        <h2 class="text-center mb-4">Create New Project</h2>
+
+        @if (TempData["SuccessMessage"] != null)
+        {
+            <div class="alert alert-success text-center">
+                @TempData["SuccessMessage"]
+            </div>
+        }
+
+        <form asp-action="Create" method="post">
+            <div class="mb-3">
+                <label for="Name" class="form-label">Project Name</label>
+                <input asp-for="Name" class="form-control" id="Name" />
+                <span class="text-danger">@Html.ValidationMessageFor(model => model.Name)</span>
+            </div>
+
+            <div class="mb-3">
+                <label for="ProjectType" class="form-label">Project Type</label>
+                <select asp-for="ProjectType" class="form-select" id="ProjectType">
+                    <option value="">Select Project Type</option>
+                    <option value="Web Application">Web Application</option>
+                    <option value="Desktop Application">Desktop Application</option>
+                    <option value="Mobile Application">Mobile Application</option>
+                </select>
+                <span class="text-danger">@Html.ValidationMessageFor(model => model.ProjectType)</span>
+            </div>
+            <div class="mb-3">
+                <label for="Status" class="form-label">Project Type</label>
+                <select asp-for="Status" class="form-select" id="ProjectType">
+                    <option value="">Select Status</option>
+                    <option value="Work on it">Work on it</option>
+                    <option value="Debug it">Debug it</option>
+                    <option value="Add more modules">Add more modules</option>
+                </select>
+                <span class="text-danger">@Html.ValidationMessageFor(model => model.ProjectType)</span>
+            </div>
+
+            <div class="mb-3">
+                <label for="Description" class="form-label">Project Description</label>
+                <textarea asp-for="Description" class="form-control" id="Description" rows="4"></textarea>
+                <span class="text-danger">@Html.ValidationMessageFor(model => model.Description)</span>
+            </div>
+
+            <button type="submit" class="btn btn-primary w-100">Create Project</button>
+        </form>
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+</body>
+</html>
+ 

@@ -1,0 +1,14 @@
+﻿@{
+    ViewData["Title"] = "AI Debugging Status";
+}
+
+<h2>AI Debugging Status</h2>
+
+@if (ViewBag.DebugResult != null)
+{
+    <p>@ViewBag.DebugResult</p>
+}
+
+<form asp-controller="Dashboard" asp-action="RunAIDebugger" method="post">
+    <button type="submit">Run AI Debugger</button>
+</form>
